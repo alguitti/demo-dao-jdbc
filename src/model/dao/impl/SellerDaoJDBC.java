@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -87,6 +89,7 @@ public class SellerDaoJDBC implements SellerDao {
 	@Override
 	public List<Seller> findByDepartment(Department department) {
 		List<Seller> sellers = new ArrayList<>();
+		Map<Integer, Department> mapDept = new HashMap<>();
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
@@ -99,8 +102,17 @@ public class SellerDaoJDBC implements SellerDao {
 			rs = st.executeQuery();
 
 			while (rs.next()) {
-				Department dept = instantiateDepartment(rs);
-				sellers.add(instantiateSeller(dept, rs));
+				//Se fizemos simplesmente o comando abaixo cada elemento da lista 
+				//terá uma instancia própria de department (errado)
+				//Department dept = instantiateDepartment(rs);
+				//testa se já existe instancia com a chave Id
+				Department dep = mapDept.get(rs.getInt("DepartmentId"));
+				if (dep == null) {
+					dep = instantiateDepartment(rs);
+					//se nulo instancia e guarda com a chave
+					mapDept.put(rs.getInt("DepartmentId"), dep);
+				}
+				sellers.add(instantiateSeller(dep, rs));
 			}
 			if (sellers.size() != 0) {
 				return sellers;
