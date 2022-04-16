@@ -96,8 +96,8 @@ public class Seller implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Seller id=" + id + ", name= " + name + ", email= " + email + ", birthDate= " + sdf.format(birthDate) + ", baseSalary= "
-				+ baseSalary + ", department= " + department;
+		return "Seller id: " + id + "\nname= " + name + ", email= " + email + ", birthDate= " + sdf.format(birthDate) 
+				+ "\nbaseSalary= "+ baseSalary + ", department= " + department;
 	}
 	
 }

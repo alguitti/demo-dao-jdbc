@@ -10,11 +10,12 @@ import model.entities.Seller;
 public class Program {
 
 	public static void main(String[] args) {
-		
+
 		SellerDao sellerDao = DaoFactory.createSellerDao();
-		
+
+		System.out.println("****Test 1 - finById****");
 		System.out.println(sellerDao.findById(3));
-		
+
 	}
 
 }
