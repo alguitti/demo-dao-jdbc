@@ -40,6 +40,11 @@ public class Program {
 			sellerDao.update(seller);
 			System.out.println("Update completed");
 			
+			System.out.println("****Test 6 - Delete****");
+			sellerDao.deleteById(2);
+			
+			
+			
 			
 			/*System.out.println("****Test 3 - findAll****");
 			sellers = sellerDao.findAll();
