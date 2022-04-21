@@ -31,6 +31,15 @@ public class Program {
 			
 			System.out.println("****Test 4 - Insert****");
 			sellerDao.insert(seller);
+			System.out.println("Success, seller ID: " + seller.getId());
+			
+			
+			System.out.println("****Test 5 - Update****");
+			seller = sellerDao.findById(2);
+			seller.setName("Pedro Capivara");
+			sellerDao.update(seller);
+			System.out.println("Update completed");
+			
 			
 			/*System.out.println("****Test 3 - findAll****");
 			sellers = sellerDao.findAll();
