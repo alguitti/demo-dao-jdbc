@@ -29,37 +29,28 @@ public class Program {
 			List<Seller> sellers = sellerDao.findByDepartment(new Department(sc.nextInt()));
 			sellers.forEach(s -> System.out.println(s));
 			
+			System.out.println("****Test 3 - findAll****");
+			sellers = sellerDao.findAll();
+			sellers.forEach(System.out::println);
+			
 			System.out.println("****Test 4 - Insert****");
 			sellerDao.insert(seller);
 			System.out.println("Success, seller ID: " + seller.getId());
 			
 			
 			System.out.println("****Test 5 - Update****");
-			seller = sellerDao.findById(2);
+			seller = sellerDao.findById(sc.nextInt());
 			seller.setName("Pedro Capivara");
 			sellerDao.update(seller);
 			System.out.println("Update completed");
 			
 			System.out.println("****Test 6 - Delete****");
-			sellerDao.deleteById(2);
-			
-			
-			
-			
-			/*System.out.println("****Test 3 - findAll****");
-			sellers = sellerDao.findAll();
-			sellers.sort((s1,s2) -> s1.getName().toUpperCase().compareTo(s2.getName().toUpperCase()));
-			sellers.forEach(System.out::println); */
+			sellerDao.deleteById(sc.nextInt());
 		
 		}
 
 		catch (NullPointerException e) {
 			System.err.println("ID de Department não encontrado no DB \nError: " + e.getMessage());
-			
-			System.out.println("****Test 3 - findAll****");
-			SellerDao sellerDao = DaoFactory.createSellerDao();
-			List <Seller> sellers = sellerDao.findAll();
-			sellers.forEach(System.out::println);
 		}
 		
 		catch (InputMismatchException e) {
